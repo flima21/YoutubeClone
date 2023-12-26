@@ -1,9 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePrincipalPageComponent } from './home-principal-page/home-principal-page.component';
+import { HomePageVideosComponent } from './home-page-videos/home-page-videos.component';
+import { HightopVideosComponent } from './hightop-videos/hightop-videos.component';
 
 const routes: Routes = [
-  { path:'', component:HomePrincipalPageComponent, pathMatch:'full' }
+  { path:'', redirectTo:'home/videos', pathMatch:'full' },
+  { path:'home', component: HomePrincipalPageComponent, children: [
+    { path: 'videos' , component: HomePageVideosComponent },
+    { path: 'treeding' , component: HightopVideosComponent }
+  ]}
 ];
 
 @NgModule({

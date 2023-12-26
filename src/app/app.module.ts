@@ -5,11 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePrincipalPageComponent } from './home-principal-page/home-principal-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomePageVideosComponent } from './home-page-videos/home-page-videos.component';
+import { HightopVideosComponent } from './hightop-videos/hightop-videos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePrincipalPageComponent
+    HomePrincipalPageComponent,
+    HomePageVideosComponent,
+    HightopVideosComponent
   ],
   imports: [
     BrowserModule,

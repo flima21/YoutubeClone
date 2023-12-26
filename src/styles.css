@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+.img-size-duration {
+  max-width: 60px !important;
+  max-height: 30px !important;
+  margin-top: 140px;
+  margin-left: 320px;
+  padding: 2px 2px 2px 2px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #000;
+  text-align: center;
+}

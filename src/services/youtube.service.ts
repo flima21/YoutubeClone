@@ -32,7 +32,7 @@ export class YoutubeService {
   }
 
   getChannel(channelId:string,regionCode:string,pagesize:number = 5): Observable<YoutubeChannel> {
-    return this.http.get<YoutubeChannel>(environment.urlApi + 'channels?id=+'+channelId + '&' + 'regionCode='+ regionCode + '&' + 'key=' + environment.apiKeyYoutube + '&' +'part=snippet'+ '&maxResults=' + pagesize);
+    return this.http.get<YoutubeChannel>(environment.urlApi + 'channels?id=+'+channelId + '&' + 'regionCode='+ regionCode + '&' + 'key=' + environment.apiKeyYoutube + '&' +'part=snippet'+ '&maxResults=' + pagesize );
   }
 
   getVideoCategoryPopular(regionCode:string,pagesize:number = 5): Observable<YoutubeVideoCategory> {
@@ -40,7 +40,7 @@ export class YoutubeService {
   }
 
   getVideoPopular(regionCode:string,pagesize:number = 5): Observable<YoutubeVideo> {
-    return this.http.get<YoutubeVideo>(environment.urlApi + 'videos?chart=mostPopular&regionCode='+ regionCode + '&' +'key=' + environment.apiKeyYoutube + '&' +'part=snippet,contentDetails,statistics'+ '&maxResults=' + pagesize);
+    return this.http.get<YoutubeVideo>(environment.urlApi + 'videos?chart=mostPopular&regionCode='+ regionCode + '&' +'key=' + environment.apiKeyYoutube + '&' +'part=snippet,contentDetails,statistics'+ '&maxResults=' + pagesize + '&order=viewCount');
   }
 
 }

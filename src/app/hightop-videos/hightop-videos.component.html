@@ -1,0 +1,50 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-mt-2">
+      <img src="https://www.youtube.com/img/trending/avatar/trending.png" style="border-radius: 80px;">
+      <h2 style="display: inline; padding-left: 10px;"><b>Em alta</b></h2>
+    </div>
+    <!-- <div class="col-mt-10">
+      <p class="text-white text-light"><b>Em alta</b></p>
+    </div> -->
+  </div>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <ul class="nav">
+        <li class="nav-item"><a class="nav-link active">Todos</a></li>
+        <li class="nav-item"><a class="nav-link"       >Música</a></li>
+        <li class="nav-item"><a class="nav-link"       >Jogos</a></li>
+        <li class="nav-item"><a class="nav-link"       >Filmes</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  
+  <div class="row" *ngFor="let video of videos">
+    <!-- Assuming videos is an array of video items -->
+    <div class="col-md-12" >
+      <div class="card mb-4" style="border: none;">
+        <div class="row no-gutters">
+          <div class="col-md-3">
+            <img src="{{ video.snippet.thumbnails.medium.url }}" alt="Video Thumbnail" class="card-img" style="border-radius: 20px;max-width: 248px;">
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <h5 class="card-title">{{ video.snippet.title }}</h5>
+              <p class="card-text" style="font-size: 15px;">
+                <small class="text-muted">{{ video.snippet.channelTitle }} {{ video.statistics.viewCount }} visualizações</small>
+              </p>
+              <p class="card-text" style="font-size: 15px;">
+                <small class="text-muted">{{ video.snippet.description.slice(0, 150) }}</small>
+              </p>
+            </div>
+          </div>
+          <div class="card-img-overlay ">
+            <p class="card-text text-white">{{ video.contentDetails.duration}}</p>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
