@@ -7,18 +7,22 @@ import { HomePrincipalPageComponent } from './home-principal-page/home-principal
 import { HttpClientModule } from '@angular/common/http';
 import { HomePageVideosComponent } from './home-page-videos/home-page-videos.component';
 import { HightopVideosComponent } from './hightop-videos/hightop-videos.component';
+import { FormsModule } from '@angular/forms';
+import { SearchListVideoComponent } from './search-list-video/search-list-video.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePrincipalPageComponent,
     HomePageVideosComponent,
-    HightopVideosComponent
+    HightopVideosComponent,
+    SearchListVideoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

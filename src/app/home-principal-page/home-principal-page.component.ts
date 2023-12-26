@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { map } from 'rxjs';
-import { YoutubeChannel } from 'src/interface/youtube-channel';
 import { YoutubeService } from 'src/services/youtube.service';
 
 @Component({
@@ -15,7 +15,9 @@ export class HomePrincipalPageComponent implements OnInit {
   videos: any[] = [];
   channels: any[] = [];
 
-  constructor(private api: YoutubeService) {
+  textSearch : string = '';
+
+  constructor(private api: YoutubeService, private router:Router) {
     this.regionCode = '';
     this.regionUserDefine = 'BR';
   }
