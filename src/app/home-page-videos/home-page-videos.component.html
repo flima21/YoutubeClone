@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <ul class="nav" *ngIf="categories.length > 0">
         <li class="nav-item navbar-item-border mx-1" *ngFor="let channel of categories.slice(0,10)">
-          <a class="nav-link" href="#">{{ channel.snippet.title }}</a>
+          <a class="nav-link" href="#"><b>{{ channel.snippet.title }}</b></a>
         </li>
       </ul>
     </div>
