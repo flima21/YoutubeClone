@@ -1,0 +1,122 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+  <div class="container-fluid">
+    <button class="btn"><i class="bi bi-list"></i></button>
+    <a class="navbar-brand" style="font-weight: bold;"><i class="bi bi-youtube text-danger"></i> YouTube</a>
+    <form class="d-flex justify-content-center mx-auto">
+      <input type="text" class="form-control" type="search" placeholder="Search" aria-label="Search"
+        style="min-width: 600px;border-radius: 40px;">
+      <button class="btn"><i class="bi bi-search"></i></button>
+    </form>
+
+    <form class="d-flex">
+      <button class="btn"><i class="bi bi-camera-reels-fill"></i></button>
+      <button class="btn"><i class="bi bi-bell"></i></button>
+      <button class="btn">F</button>
+    </form>
+  </div>
+</nav>
+
+<div class="container-fluid" style="padding-top: 80px;">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav navbar-expand-lg flex-column">
+          <li class="nav-item"><a class="nav-link active" href="#"><i class="bi bi-house"></i> Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-camera"></i> Shorts</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-collection-play"></i> Inscrições</a></li>
+          <hr>
+          <p class="text-light">Você <i class="bi bi-caret-right"></i></p>
+          <li class="nav-item"><a class="nav-link active" href="#"><i class="bi bi-user"></i> Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-arrow-counterclockwise"></i> Shorts</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-play-circle"></i> Inscrições</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-clock"></i> Assistir mais tarde</a></li>
+
+          <!--AQUI PRECISA EXISTIR UM FOR PARA QUE COLOQUE OUTRAS OPÇÕES QUANDO SHOWMORE FOR TRUE-->
+
+          <button class="btn text-light">Mostrar mais <i class="bi bi-arrow-down"></i></button>
+          <hr>
+          <p class="text-light">Inscrições</p>
+          AQUI PRECISA APARECER TODAS INSCRIÇÕES
+          <p class="text-light">Explorar</p>
+          <p class="text-light">Mais do YouTube</p>
+          <li class="nav-item"><a class="nav-link active " href="#"><i class="bi bi-youtube text-danger"></i> YouTube
+              Premium</a></li>
+          <li class="nav-item"><a class="nav-link " href="#"><i class="bi bi-youtube text-danger"></i> YouTube
+              Studio</a></li>
+          <li class="nav-item"><a class="nav-link " href="#"><i class="bi bi-youtube text-danger"></i> YouTube Music</a>
+          </li>
+          <li class="nav-item"><a class="nav-link " href="#"><i class="bi bi-youtube text-danger"></i> YouTube Kids</a>
+          </li>
+
+          <hr>
+
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-2">
+
+      <nav class="navbar">
+        <div class="container-fluid">
+          <ul class="nav" *ngIf="categories.length > 0">
+            <li class="nav-item navbar-item-border mx-1" *ngFor="let channel of categories.slice(0,10)">
+              <a class="nav-link" href="#">{{ channel.snippet.title }}</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container">
+
+        <div id="videos">
+          <div class="row">
+            <div class="card mx-1" style="width: 25rem; padding-bottom: 20px;border: none;"
+              *ngFor="let video of videos">
+              <img src="{{ video.snippet.thumbnails.medium.url }}" class="card-img-top"
+                width="{{ video.snippet.thumbnails.medium.width }}"
+                height="{{ video.snippet.thumbnails.medium.height }}">
+
+                <p class="card-title text-light">
+
+                  
+                </p>
+              <div class="card-body">
+                <div class="row" *ngFor="let c of channels">
+                  <ng-container *ngIf="video.snippet.channelTitle === c.snippet.title">
+                    <div class="row">
+                      <div class="col-2">
+                        <img class="thumbnails-channel-icon" src="{{ c.snippet.thumbnails.default.url }}">
+                      </div>
+
+                      <div class="col-10">
+                        <p class="card-title text-light" *ngIf="video.snippet.title.length >= 80">{{
+                          video.snippet.title.slice(0,50)}}...</p>
+                        <p class="card-title text-light" *ngIf="video.snippet.title.length < 80">{{
+                          video.snippet.title}}</p>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-2"></div>
+                      <div class="col-10" style="font-size: 10pt;">{{ c.snippet.title }}<br>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-2"></div>
+                      <div class="col-10" style="font-size: 10pt;">{{video.statistics.viewCount}} visualizações</div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="videosShorts" style="padding-top: 10px;">
+          <h3 style="font-weight: lighter;"><b>Shorts</b></h3>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
