@@ -35,7 +35,7 @@ export class HomePrincipalPageComponent implements OnInit {
       if (region.length > 0) {
         this.regionCode = region[0].id;
         this.getVideoCategoryPopular(this.regionCode);
-        this.getVideo(this.regionCode);
+        this.getVideo(this.regionCode,6);
         // this.getChannel(channelId,this.regionCode);
       }
 
@@ -52,8 +52,8 @@ export class HomePrincipalPageComponent implements OnInit {
     })
   }
 
-  getVideo(codeRegion: string) {
-    this.api.getVideoPopular(codeRegion).pipe(
+  getVideo(codeRegion: string,pagesize:number =5) {
+    this.api.getVideoPopular(codeRegion,pagesize).pipe(
       map((dataVideo: any) => {
         // Insert in videos
         this.videos = dataVideo.items;
@@ -62,12 +62,12 @@ export class HomePrincipalPageComponent implements OnInit {
         const channelIds = dataVideo.items.map((item: any) => item.snippet.channelId).join(',');
 
         // call the method getChannel
-        return this.getChannel(channelIds, codeRegion)
+        return this.getChannel(channelIds, codeRegion,pagesize)
       })).subscribe()
   }
 
-  getChannel(channelId: string, codeRegion: string) {
-    return this.api.getChannel(channelId, codeRegion).subscribe(data => { this.channels = data.items;});
+  getChannel(channelId: string, codeRegion: string,pagesize:number=5) {
+    return this.api.getChannel(channelId, codeRegion,pagesize).subscribe(data => { this.channels = data.items;});
   }
 
 }

@@ -27,20 +27,20 @@ export class YoutubeService {
   */
   constructor(private http:HttpClient) { }
 
-  getRegion(): Observable<YoutubeRegion> {
-    return this.http.get<YoutubeRegion>(environment.urlApi + 'i18nRegions?'+ 'key=' + environment.apiKeyYoutube);
+  getRegion(pagesize:number = 5): Observable<YoutubeRegion> {
+    return this.http.get<YoutubeRegion>(environment.urlApi + 'i18nRegions?'+ 'key=' + environment.apiKeyYoutube + '&maxResults=' + pagesize);
   }
 
-  getChannel(channelId:string,regionCode:string): Observable<YoutubeChannel> {
-    return this.http.get<YoutubeChannel>(environment.urlApi + 'channels?id=+'+channelId + '&' + 'regionCode='+ regionCode + '&' + 'key=' + environment.apiKeyYoutube + '&' +'part=snippet');
+  getChannel(channelId:string,regionCode:string,pagesize:number = 5): Observable<YoutubeChannel> {
+    return this.http.get<YoutubeChannel>(environment.urlApi + 'channels?id=+'+channelId + '&' + 'regionCode='+ regionCode + '&' + 'key=' + environment.apiKeyYoutube + '&' +'part=snippet'+ '&maxResults=' + pagesize);
   }
 
-  getVideoCategoryPopular(regionCode:string): Observable<YoutubeVideoCategory> {
-    return this.http.get<YoutubeVideoCategory>(environment.urlApi + 'videoCategories?regionCode='+ regionCode + '&' +'key=' + environment.apiKeyYoutube + '&' +'part=snippet');
+  getVideoCategoryPopular(regionCode:string,pagesize:number = 5): Observable<YoutubeVideoCategory> {
+    return this.http.get<YoutubeVideoCategory>(environment.urlApi + 'videoCategories?regionCode='+ regionCode + '&' +'key=' + environment.apiKeyYoutube + '&' +'part=snippet'+ '&maxResults=' + pagesize);
   }
 
-  getVideoPopular(regionCode:string): Observable<YoutubeVideo> {
-    return this.http.get<YoutubeVideo>(environment.urlApi + 'videos?chart=mostPopular&regionCode='+ regionCode + '&' +'key=' + environment.apiKeyYoutube + '&' +'part=snippet,contentDetails,statistics');
+  getVideoPopular(regionCode:string,pagesize:number = 5): Observable<YoutubeVideo> {
+    return this.http.get<YoutubeVideo>(environment.urlApi + 'videos?chart=mostPopular&regionCode='+ regionCode + '&' +'key=' + environment.apiKeyYoutube + '&' +'part=snippet,contentDetails,statistics'+ '&maxResults=' + pagesize);
   }
 
 }
