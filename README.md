@@ -1,4 +1,4 @@
-# YouTube Clone - Angular
+# YouTube Clone - Angular - EM DESENVOLVIMENTO
 Este é um projeto Angular que replica a interface do YouTube, utilizando a API oficial do YouTube para exibir vídeos, detalhes do vídeo e funcionalidades básicas de pesquisa e reprodução.
 
 ## Funcionalidades
