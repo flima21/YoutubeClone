@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { elementAt, map } from 'rxjs';
 import { YoutubeChannel } from 'src/interface/youtube-channel';
@@ -10,15 +10,15 @@ import { YoutubeService } from 'src/services/youtube.service';
   styleUrls: ['./home-page-videos.component.css']
 })
 export class HomePageVideosComponent {
-  regionUserDefine: string;
-  regionCode: string; // Code region user
+  regionUserDefine: any;
+  regionCode: any; // Code region user
   categories: any[] = [];
   videos: any[] = [];
   channels: any[] = [];
 
   constructor(private api: YoutubeService, private router: Router, private route: ActivatedRoute) {
     this.regionCode = '';
-    this.regionUserDefine = 'BR';
+    this.regionUserDefine = localStorage.getItem('regionCode')?.toString();
   }
 
   ngOnInit(): void {

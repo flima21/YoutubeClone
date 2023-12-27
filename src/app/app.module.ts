@@ -9,6 +9,8 @@ import { HomePageVideosComponent } from './home-page-videos/home-page-videos.com
 import { HightopVideosComponent } from './hightop-videos/hightop-videos.component';
 import { FormsModule } from '@angular/forms';
 import { SearchListVideoComponent } from './search-list-video/search-list-video.component';
+import { ErrorApiComponent } from './error-api/error-api.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { SearchListVideoComponent } from './search-list-video/search-list-video.
     HomePrincipalPageComponent,
     HomePageVideosComponent,
     HightopVideosComponent,
-    SearchListVideoComponent
+    SearchListVideoComponent,
+    ErrorApiComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

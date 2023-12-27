@@ -10,8 +10,8 @@ import { HttpParams } from '@angular/common/http';
   styleUrls: ['./home-principal-page.component.css']
 })
 export class HomePrincipalPageComponent implements OnInit {
-  regionUserDefine: string;
-  regionCode: string; // Code region user
+  regionUserDefine: any;
+  regionCode: any; // Code region user
   categories: any[] = [];
   videos: any[] = [];
   channels: any[] = [];
@@ -20,7 +20,7 @@ export class HomePrincipalPageComponent implements OnInit {
 
   constructor(private api: YoutubeService, private route:ActivatedRoute, private router:Router) {
     this.regionCode = '';
-    this.regionUserDefine = 'BR';
+    this.regionUserDefine = localStorage.getItem('regionCode')?.toString();
   }
 
   ngOnInit(): void {
@@ -45,13 +45,11 @@ export class HomePrincipalPageComponent implements OnInit {
         this.regionCode = region[0].id;
         this.getVideoCategoryPopular(this.regionCode);
         this.getVideo(this.regionCode,6);
-        // this.getChannel(channelId,this.regionCode);
       }
 
       else {
-        this.regionCode = '00';
+        this.regionUserDefine = this.regionCode = null;
       }
-
     });
   }
 

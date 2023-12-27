@@ -8,7 +8,7 @@ import { YoutubeService } from 'src/services/youtube.service';
   styleUrls: ['./hightop-videos.component.css']
 })
 export class HightopVideosComponent implements OnInit{
-  regionUserDefine: string;
+  regionUserDefine: any;
   regionCode: string; // Code region user
   categories: any[] = [];
   videos: any[] = [];
@@ -16,7 +16,7 @@ export class HightopVideosComponent implements OnInit{
 
   constructor(private api: YoutubeService) {
     this.regionCode = '';
-    this.regionUserDefine = 'BR';
+    this.regionUserDefine = localStorage.getItem('regionCode')?.toString();
   }
 
   ngOnInit(): void {
