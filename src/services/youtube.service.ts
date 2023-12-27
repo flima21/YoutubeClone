@@ -43,4 +43,8 @@ export class YoutubeService {
     return this.http.get<YoutubeVideo>(environment.urlApi + 'videos?chart=mostPopular&regionCode='+ regionCode + '&' +'key=' + environment.apiKeyYoutube + '&' +'part=snippet,contentDetails,statistics'+ '&maxResults=' + pagesize + '&order=viewCount');
   }
 
+  getVideoPopularByCategory(regionCode:string,idCategory:string,pagesize:number = 5): Observable<YoutubeVideo> {
+    return this.http.get<YoutubeVideo>(environment.urlApi + 'videos?chart=mostPopular&regionCode='+ regionCode + '&' +'key=' + environment.apiKeyYoutube + '&' +'part=snippet,contentDetails,statistics'+ '&maxResults=' + pagesize + '&order=viewCount' + '&categoryId=' + idCategory);
+  }
+
 }

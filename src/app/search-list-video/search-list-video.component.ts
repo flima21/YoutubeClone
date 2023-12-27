@@ -13,10 +13,13 @@ export class SearchListVideoComponent implements OnInit {
 
   constructor(private router: ActivatedRoute, private routerBack: Router, private api: YoutubeService) { }
 
+  /**
+   * 
+   */
   ngOnInit(): void {
     this.router.queryParams.subscribe(params => {
-      let search = params['search_query'];
-      
+      let search = params['query_search'];
+
       if (search) {
         this.api.getVideoPopular('BR',100).subscribe((data) => {
 

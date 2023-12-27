@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { YoutubeService } from 'src/services/youtube.service';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-home-principal-page',
@@ -17,7 +18,7 @@ export class HomePrincipalPageComponent implements OnInit {
 
   textSearch : string = '';
 
-  constructor(private api: YoutubeService, private router:Router) {
+  constructor(private api: YoutubeService, private route:ActivatedRoute, private router:Router) {
     this.regionCode = '';
     this.regionUserDefine = 'BR';
   }
@@ -26,9 +27,15 @@ export class HomePrincipalPageComponent implements OnInit {
     this.getDataRegion();
   }
 
-  // ngAfterViewInit(): void {
-  //   console.log(this.channels);    
-  // }
+  setSearchVideoList() {
+    if(this.textSearch.length > 0) {
+      // this.router.navigateByUrl(`/searchlist/${this.textSearch}`);
+      this.router.navigate(['home', 'searchlist'],{
+        queryParams: { query_search : this.textSearch },
+        queryParamsHandling: 'merge'
+      });
+    }
+  }
 
   getDataRegion() {
     return this.api.getRegion().subscribe((data) => {
@@ -73,3 +80,35 @@ export class HomePrincipalPageComponent implements OnInit {
   }
 
 }
+// this.router.navigateByUrl(`player/lista/artista/${artistaId}`);
+
+/*
+export const PlayerRotas: Routes = [
+    {
+        path: '',
+        component: PlayerComponent,
+        children: [
+            {
+                path: '',
+                component: HomeComponent
+            },
+            {
+                path: 'home',
+                component: HomeComponent
+            },
+            {
+                path: 'artistas',
+                component: ArtistasComponent
+            },
+            {
+                path: 'dashboard',
+                component: DashboardComponent
+            },
+            {
+                path: 'lista/:tipo/:id',
+                component: ListaMusicasComponent
+            }
+        ]
+    }
+]
+*/

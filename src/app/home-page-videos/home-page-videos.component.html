@@ -1,9 +1,9 @@
 <!-- <app-home-principal-page> -->
   <nav class="navbar">
     <div class="container-fluid">
-      <ul class="nav" *ngIf="categories.length > 0">
-        <li class="nav-item navbar-item-border mx-1" *ngFor="let channel of categories.slice(0,10)">
-          <a class="nav-link" href="#"><b>{{ channel.snippet.title }}</b></a>
+      <ul class="nav nav-underline" *ngIf="categories.length > 0">
+        <li class="nav-item mx-1" *ngFor="let channel of categories">
+          <a class="nav-link" aria-current="page" (click)="setFilterVideoByCategory(channel.id)" type="button" id="{{channel.id}}"><b>{{ channel.snippet.title }}</b></a>
         </li>
       </ul>
     </div>
@@ -12,7 +12,7 @@
   <div class="container">
 
     <div id="videos">
-      <div class="row">
+      <div class="row" *ngIf="videos.length > 0">
         <div class="card mx-1" style="width: 25rem; padding-bottom: 20px;border: none;"
           *ngFor="let video of videos">
           <img src="{{ video.snippet.thumbnails.medium.url }}" class="card-img-top"
@@ -41,8 +41,8 @@
 
                 <div class="row">
                   <div class="col-sm-2"></div>
-                  <div class="col-sm-10" style="font-size: 10pt;">{{ c.snippet.title }}<br>
-                  </div>
+                  <div class="col-sm-10" style="font-size: 10pt;">{{ c.snippet.title }}<br></div>
+                  
                 </div>
 
                 <div class="row">

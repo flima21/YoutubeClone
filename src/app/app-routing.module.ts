@@ -10,7 +10,7 @@ const routes: Routes = [
   { path:'home', component: HomePrincipalPageComponent, children: [
     { path: 'videos' , component: HomePageVideosComponent },
     { path: 'treeding' , component: HightopVideosComponent },
-    { path: 'searchlist' , component: SearchListVideoComponent },
+    { path: 'searchlist', component: SearchListVideoComponent }
   ]}
 ];
 

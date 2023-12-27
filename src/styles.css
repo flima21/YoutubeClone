@@ -10,3 +10,31 @@
   background-color: #000;
   text-align: center;
 }
+
+.navbar-shadow {
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-item-border {
+  max-width: 20rem !important;
+  border-radius: 10px;
+  background-color: #3c3c3c;
+  text-decoration:none; 
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.navbar-item-border:hover {
+  background-color: #ffffff41;
+  color: black !important;
+}
+
+.navbar-item-link-active {
+  background-color: white;
+  color: black;
+}
+
+.navbar-item-link-active:active {
+  background-color: white;
+  color: black;
+}

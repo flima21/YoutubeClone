@@ -5,7 +5,8 @@
    
     <form class="d-flex justify-content-center mx-auto" >
       <input type="text" class="form-control" type="text" placeholder="Pesquisar" aria-label="Search" style="min-width: 600px;border-radius: 40px;" name="textSearch" [(ngModel)]="textSearch">
-      <button class="btn" type="submit" [routerLink]="['/home/searchlist']" [queryParams]="{ search_query : textSearch }"><i class="bi bi-search"></i></button>
+      <button class="btn" type="button" (click)="setSearchVideoList()"><i class="bi bi-search"></i></button>
+      <!-- <button class="btn" type="button" [routerLink]="['/home/searchlist']" [queryParams]="{ search_query : textSearch }"><i class="bi bi-search"></i></button> -->
     </form>
 
     <form class="d-flex">

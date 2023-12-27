@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { map } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { elementAt, map } from 'rxjs';
 import { YoutubeChannel } from 'src/interface/youtube-channel';
 import { YoutubeService } from 'src/services/youtube.service';
 
@@ -15,7 +16,7 @@ export class HomePageVideosComponent {
   videos: any[] = [];
   channels: any[] = [];
 
-  constructor(private api: YoutubeService) {
+  constructor(private api: YoutubeService, private router: Router, private route: ActivatedRoute) {
     this.regionCode = '';
     this.regionUserDefine = 'BR';
   }
@@ -24,9 +25,15 @@ export class HomePageVideosComponent {
     this.getDataRegion();
   }
 
-  // ngAfterViewInit(): void {
-  //   console.log(this.channels);    
-  // }
+  setFilterVideoByCategory(idCategory: string) {
+    this.router.navigate(['home','videos'], {
+      queryParams: { query_search: idCategory },
+      queryParamsHandling: 'merge'
+    });
+
+    this.videos = [];
+    this.getVideo(this.regionCode,500);
+  }
 
   getDataRegion() {
     return this.api.getRegion().subscribe((data) => {
@@ -35,8 +42,7 @@ export class HomePageVideosComponent {
       if (region.length > 0) {
         this.regionCode = region[0].id;
         this.getVideoCategoryPopular(this.regionCode);
-        this.getVideo(this.regionCode,6);
-        // this.getChannel(channelId,this.regionCode);
+        this.getVideo(this.regionCode, 6);
       }
 
       else {
@@ -48,26 +54,34 @@ export class HomePageVideosComponent {
 
   getVideoCategoryPopular(codeRegion: string) {
     return this.api.getVideoCategoryPopular(codeRegion).subscribe(data => {
-      this.categories = data.items;
+      this.categories = data.items.sort((a,b) => { return a.snippet.title.localeCompare(b.snippet.title);});
     })
   }
 
-  getVideo(codeRegion: string,pagesize:number =5) {
-    this.api.getVideoPopular(codeRegion,pagesize).pipe(
+  getVideo(codeRegion: string, pagesize: number = 5) {
+    this.api.getVideoPopular(codeRegion, pagesize).pipe(
       map((dataVideo: any) => {
         // Insert in videos
         this.videos = dataVideo.items;
+        this.route.queryParams.subscribe(params => {
+          let search = params['query_search'];
+
+          if (!!search && !!search.trim()) {
+            this.videos = this.videos.filter(video => video.snippet && video.snippet.categoryId === search);
+          }
+
+        });
 
         // Get all ids like string 
-        const channelIds = dataVideo.items.map((item: any) => item.snippet.channelId).join(',');
+        const channelIds = this.videos.map((item: any) => item.snippet.channelId).join(',');
 
         // call the method getChannel
-        return this.getChannel(channelIds, codeRegion,pagesize)
+        return this.getChannel(channelIds, codeRegion, pagesize)
       })).subscribe()
   }
 
-  getChannel(channelId: string, codeRegion: string,pagesize:number=5) {
-    return this.api.getChannel(channelId, codeRegion,pagesize).subscribe(data => { this.channels = data.items;});
+  getChannel(channelId: string, codeRegion: string, pagesize: number = 5) {
+    return this.api.getChannel(channelId, codeRegion, pagesize).subscribe(data => { this.channels = data.items });
   }
 
 }
