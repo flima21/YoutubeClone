@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="arrow left-arrow" onclick="girarBarra('esquerda')">&lt;</div>
+  <div class="barra">
+    <button onclick="mostrarAba('aba1')">Aba 1</button>
+    <button onclick="mostrarAba('aba2')">Aba 2</button>
+    <button onclick="mostrarAba('aba3')">Aba 3</button>
+    <button onclick="mostrarAba('aba3')">Aba 3</button>
+    <button onclick="mostrarAba('aba3')">Aba 3</button>
+    <button onclick="mostrarAba('aba3')">Aba 3</button>
+    <button onclick="mostrarAba('aba3')">Aba 3</button>
+    <button onclick="mostrarAba('aba3')">Aba 3</button>
+    <button onclick="mostrarAba('aba3')">Aba 3</button>
+    <button onclick="mostrarAba('aba3')">Aba 3</button>
+    <button onclick="mostrarAba('aba3')">Aba 3</button>
+    <button onclick="mostrarAba('aba3')">Aba 3</button>
+    <button onclick="mostrarAba('aba3')">Aba 3</button>
+    <button onclick="mostrarAba('aba3')">Aba 3</button>
+    <button onclick="mostrarAba('aba3')">Aba 3</button>
+    <button onclick="mostrarAba('aba3')">Aba 3</button>
+    <!-- Adicione mais botões conforme necessário -->
+  </div>
+  <div class="arrow right-arrow" onclick="girarBarra('direita')">&gt;</div>
+
+  <div class="conteudo">
+    <div id="aba1" class="conteudo-aba">
+      <!-- Conteúdo da aba 1 -->
+    </div>
+
+    <div id="aba2" class="conteudo-aba" style="display: none;">
+      <!-- Conteúdo da aba 2 -->
+    </div>
+
+    <div id="aba3" class="conteudo-aba" style="display: none;">
+      <!-- Conteúdo da aba 3 -->
+    </div>
+  </div>
+</div>
+
+<script>
+function mostrarAba(id) {
+  var abas = document.querySelectorAll('.conteudo-aba');
+  abas.forEach(function (aba) {
+    aba.style.display = 'none';
+  });
+  document.getElementById(id).style.display = 'block';
+
+  var barra = document.querySelector('.barra');
+  var botaoAtivo = document.querySelector('.barra button.active');
+  if (botaoAtivo) {
+    botaoAtivo.classList.remove('active');
+  }
+  var botaoClicado = document.querySelector('.barra button:nth-of-type(' + id.slice(-1) + ')');
+  botaoClicado.classList.add('active');
+
+  var offsetLeft = botaoClicado.offsetLeft;
+  var newPosition = offsetLeft - barra.clientWidth / 2 + botaoClicado.clientWidth / 2;
+  barra.scrollLeft = newPosition;
+}
+
+function girarBarra(direcao) {
+  var barra = document.querySelector('.barra');
+  var incremento = 200; // Quantidade de pixels para girar a barra
+
+  if (direcao === 'direita') {
+    barra.scrollLeft += incremento;
+  } else if (direcao === 'esquerda') {
+    barra.scrollLeft -= incremento;
+  }
+}
+
+
+</script>

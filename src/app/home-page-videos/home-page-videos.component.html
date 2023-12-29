@@ -1,9 +1,9 @@
 <!-- <app-home-principal-page> -->
   <nav class="navbar">
-    <div class="container-fluid">
-      <ul class="nav nav-underline" *ngIf="categories.length > 0">
-        <li class="nav-item mx-1" *ngFor="let channel of categories">
-          <a class="nav-link" aria-current="page" (click)="setFilterVideoByCategory(channel.id)" type="button" id="{{channel.id}}"><b>{{ channel.snippet.title }}</b></a>
+    <div class="container-fluid" >
+      <ul class="nav nav-tabs" *ngIf="categories.length > 0">
+        <li class="nav-item-button mx-1" *ngFor="let channel of categories">
+          <button class="nav-link" aria-current="page" (click)="setFilterVideoByCategory(channel.id)" type="button" id="{{channel.id}}"><b>{{ channel.snippet.title }}</b></button>
         </li>
       </ul>
     </div>

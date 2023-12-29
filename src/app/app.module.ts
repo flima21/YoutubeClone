@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchListVideoComponent } from './search-list-video/search-list-video.component';
 import { ErrorApiComponent } from './error-api/error-api.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HightopVideosComponent,
     SearchListVideoComponent,
     ErrorApiComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
